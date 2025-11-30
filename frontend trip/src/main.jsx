@@ -7,10 +7,14 @@ import StoreContextProvider from './context/StoreContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
-<BrowserRouter>
-    <StoreContextProvider>
-      <App />
+<React.StrictMode>
+    <StoreContextProvider>        
+      <BrowserRouter>
+        
+          <App />
+      
+      </BrowserRouter>
     </StoreContextProvider>
-  </BrowserRouter>,
+  </React.StrictMode>
 
-)
+);

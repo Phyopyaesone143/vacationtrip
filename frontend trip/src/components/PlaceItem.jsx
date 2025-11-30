@@ -22,7 +22,7 @@ const [vacations,setVacations] = useState([])
         <div className="grid  mt-[30px] gap-[30px] row-gap-[50px]">
             {vacations.map((item,index)=>{
                 if(place===item.place){
-                    return <Vacation key={index} id={item._id} place={item.place} image={item.image} description={item.description} price={item.price} duration={item.duration} />
+                    return <Vacation key={item.id} id={item.id} place={item.place} image={item.image} description={item.description} price={item.price} duration={item.duration} />
                 }
                 
             })}

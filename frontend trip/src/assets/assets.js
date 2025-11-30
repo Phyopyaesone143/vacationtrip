@@ -7,6 +7,7 @@ import facebook from './facebook_icon.png'
 import twitter from './twitter_icon.png'
 import whatsapp from './whatsapp_icon.png'
 import favicon from './favicon_io/favicon.ico'
+import profileicon from './profileicon.svg'
 
 
 import bagan from './T01bagan.png'
@@ -23,6 +24,7 @@ import cross_icon from './cross_icon.png'
 
 export const assets ={
     logo,
+    profileicon,
     favicon,
     noti,
     search,

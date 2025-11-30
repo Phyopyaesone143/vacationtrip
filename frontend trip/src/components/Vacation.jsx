@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { StoreContext } from '../context/StoreContext';
 import host from '../utils/host';
+import { Await } from 'react-router-dom';
+import { createBooking } from '../utils/apiService';
 
 const Vacation = ({ id, place, image, price, description, duration: initialDuration = 1 }) => {
-  const { addToCart, updateDuration } = useContext(StoreContext);
+  const { addToCart, updateDuration, updateDate } = useContext(StoreContext);
   const [duration, setDuration] = useState(initialDuration);
   const [startdate, setStartdate] = useState("");
+
 
   // const [vacations,setVacations] = useState([])
   
@@ -14,9 +17,25 @@ const Vacation = ({ id, place, image, price, description, duration: initialDurat
   //     .then((response)=>setVacations(response.data.vacations))
   //   })
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     console.log("Start Date:", startdate);
     addToCart({ id, place, image, price, description }, { duration, startdate});
+  
+
+  try {
+      const res = await createBooking({
+        vacation_id: id,      // from props, must be backend VacationModel.id
+        v_days: duration,
+        ondate: startdate,    // "YYYY-MM-DD"
+      });
+
+      console.log("Booking created:", res.data);
+      alert("Booking created successfully!");
+
+    } catch (err) {
+      console.error("Booking error:", err.response?.data || err);
+      alert(err.response?.data?.error || "Booking failed");
+    }
   };
 
   const handleDurationChange = (e) => {

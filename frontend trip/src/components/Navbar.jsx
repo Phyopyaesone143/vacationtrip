@@ -8,6 +8,8 @@ import { StoreContext } from '../context/StoreContext'
 const Navbar = ({ setShowLogin }) => {
 
   const [menu, setMenu] = useState("menu");
+  const { user } = useContext(StoreContext);
+  console.log("Navbar user:", user);
   // const { searchQuery, setSearchQuery } = useContext(StoreContext);
   // const [showSearch, setShowSearch] = useState(false);
 
@@ -37,7 +39,22 @@ const Navbar = ({ setShowLogin }) => {
           <Link to='/cart'><img src={assets.noti} alt="" className='w-[4.5vw] md:w-[2.5vw]' /></Link>
           <div className="absolute p-0.5 min-w-[4px] md:min-w-[10px] min-h-[4px] md:min-h-[10px] bg-[tomato] rounded-[5px] -top-4 md:-top-6 -right-2 text-amber-50 text-[12px] md:text-[16px]">0</div>
         </div>
-        <button onClick={() => setShowLogin(true)} className="bg-transparent text-[#49557e] text-[16px] border border-[tomato] rounded-full px-[20px] py-[9px] cursor-pointer hover:text-blue-700 transition-all duration-300 max-[900px]:px-[16px] max-[900px]:py-[7px] max-[900px]:text-[13px]">Login</button>
+        {/* {!user && (
+            <button onClick={() => setShowLogin(true)} className="bg-transparent text-[#49557e] text-[16px] border border-[tomato] rounded-full px-[20px] py-[9px] cursor-pointer hover:text-blue-700 transition-all duration-300 max-[900px]:px-[16px] max-[900px]:py-[7px] max-[900px]:text-[13px]">Login</button>
+        )} */}
+
+        {user ? (
+          <Link to="/profile">
+            <img 
+              src={assets.profileicon} 
+              alt="profile" 
+              className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer border border-gray-300 hover:scale-105 transition"
+            />
+          </Link>
+        ):(
+          <button onClick={() => setShowLogin(true)} className="bg-transparent text-[#49557e] text-[16px] border border-[tomato] rounded-full px-[20px] py-[9px] cursor-pointer hover:text-blue-700 transition-all duration-300 max-[900px]:px-[16px] max-[900px]:py-[7px] max-[900px]:text-[13px]">Login</button>
+        )}
+
       </div>
     </div>
   )

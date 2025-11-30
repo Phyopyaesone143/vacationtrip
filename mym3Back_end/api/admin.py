@@ -5,3 +5,4 @@ from api.models import *
 
 admin.site.register(TripModel)
 admin.site.register(VacationModel)
+admin.site.register(BookModel)

@@ -3,10 +3,14 @@ import React, { createContext, useState, useMemo, useEffect } from 'react';
 import { vacationList } from '../utils/apiService';
 
 export const StoreContext = createContext(null);
+  
 
 const StoreContextProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
   const [cart, setCart] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
+  // const [startdate, setStartdate] = useState("");
+
 
   const [vacations,setVacations] = useState([])
   
@@ -77,7 +81,10 @@ const StoreContextProvider = ({ children }) => {
     updateDuration,
     updateDate,
     getCartTotal,
-  }), [cart, filteredTrips, searchQuery]);  // <- FIXED
+
+    user,
+    setUser,
+  }), [cart, filteredTrips, searchQuery, user]);  // <- FIXED
 
   return (
     <StoreContext.Provider value={contextValue}>
